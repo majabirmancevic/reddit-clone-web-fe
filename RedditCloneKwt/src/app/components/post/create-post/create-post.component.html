@@ -1,0 +1,29 @@
+<div class="container">
+    <div class="row">
+      <hr />
+      <div class="create-post-container col-md-9">
+        <form class="post-form" [formGroup]="createPostForm" (ngSubmit)="createPost()">
+          <div class="form-group">
+            <div class="create-post-heading" style="text-align:center ;">Create Post</div>
+            <hr />
+            <input type="text" [formControlName]="'description'" class="form-control" style="margin-top: 5px"
+              placeholder="Description">
+            <input type="text" [formControlName]="'postName'" class="form-control" style="margin-top: 5px"
+              placeholder="Title">  
+              
+            <select class="form-control" style="margin-top: 10px" [formControlName]="'communityName'">
+              <option value="" selected disabled >Select community</option>
+              <option *ngFor="let community of communities">{{community.name}}</option>
+            </select>
+           
+            <span>
+              <div style="margin-left:15px; margin-top: 5px; text-align: center;" class="float-right">
+                <button (click)="discardPost()" class="btnDiscard">Discard</button>
+                <button [disabled]="!createPostForm.valid" class="btnCreatePost">Post</button>
+              </div>
+            </span>
+          </div>
+        </form>
+      </div>
+    </div>
+

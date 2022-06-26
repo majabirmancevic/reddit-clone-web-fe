@@ -1,0 +1,54 @@
+<div class="register-section">
+    <div class="row justify-content-center">
+        <div class="col-lg-7">
+            <div class="card shadow-lg border-0 rounded-lg mt-5">
+                <div class="card-header"><h3 class="text-center font-weight-light my-4">Create Account</h3></div>
+                <div class="card-body">
+                    <form [formGroup]="signupForm" (ngSubmit)="signup()" *ngIf="!submitted">
+                        <div class="form-group row">
+                            <label for="email_address" class="col-md-4 col-form-label text-md-right">E-Mail
+                                Address</label>
+                            <div class="col-md-6">
+                                <input type="email" [formControlName]="'email'" id="email_address" class="form-control" name="email-address" required email
+                                    autofocus>
+                                    <span *ngIf="!signupForm.get('email')?.valid && signupForm.get('email')?.touched">
+                                        Email field cannot be empty!
+                                    </span> 
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="col-md-4 col-form-label text-md-right">Username</label>
+                            <div class="col-md-6">
+                                <input type="text" [formControlName]="'username'" class="form-control" required minlength="3" maxlength="64" autofocus>
+                                <span *ngIf="!signupForm.get('username')?.valid && signupForm.get('username')?.touched">
+                                    Username field cannot be empty!
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="password" class="col-md-4 col-form-label text-md-right">Password</label>
+                            <div class="col-md-6">
+                                <input type="password" [formControlName]="'password'" id="password" class="form-control" name="password" minlength="3" maxlength="32"required>
+                                <span *ngIf="!signupForm.get('password')?.valid && signupForm.get('password')?.touched">
+                                    Password field cannot be empty!
+                                </span>
+                            </div>
+                            
+                        </div>
+                        <br>
+                        <span class="col-md-6 offset-md-6">
+                            <button [disabled]="!signupForm.valid" color="primary" class="btn btn-lg btn-primary" type="submit" >
+                                Sign Up
+                            </button><br>
+                            <span style="padding-left: 15px">Existing user? <a routerLink="/login">Log In</a></span>
+                        </span>
+                        <br>
+                        <button color="primary" mat-raised-button routerLink="/" >Go Back</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
