@@ -39,8 +39,9 @@ export class PostService {
   //   return this.http.get<PostModel>('http://localhost:8080/api/posts/' + id);
   // }
   getPost(id: number){
-    return this.apiService.get(this.config.post_url + id);
+    return this.apiService.get(`http://localhost:8080/api/posts/${id}`)
   }
+
 
 
   // getAllPostsByUser(name: string): Observable<PostModel[]> {
@@ -52,7 +53,7 @@ export class PostService {
   }
     
   getAllPostsByCommunity(communityId: number){
-    return this.apiService.get(this.config.getPostsByCommunity_url + communityId);
+    return this.apiService.get(`http://localhost:8080/api/posts/byCommunity/${communityId}`)
   }
 
 

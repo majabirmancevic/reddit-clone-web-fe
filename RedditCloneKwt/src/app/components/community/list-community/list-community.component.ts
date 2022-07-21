@@ -10,7 +10,7 @@ import { throwError } from 'rxjs';
 })
 export class ListCommunityComponent implements OnInit {
 
-  communities!: Array<CommunityModel>;
+  communities: Array<CommunityModel>;
   constructor(private communityService: CommunityService) { }
 
   ngOnInit(): void {

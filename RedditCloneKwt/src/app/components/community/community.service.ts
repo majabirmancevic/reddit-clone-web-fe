@@ -21,6 +21,14 @@ export class CommunityService {
     return this.apiService.get(this.config.community_url);
   }
 
+  getCommunity(id: number){
+    return this.apiService.get(`http://localhost:8080/api/community/${id}`)
+  }
+
+  getCommunityByName(name: String){
+    return this.apiService.get(`http://localhost:8080/api/community/byName/${name}`)
+  }
+
 //  createCommunity(subredditModel: CommunityModel): Observable<CommunityModel> {
 //    return this.http.post<CommunityModel>('http://localhost:8080/api/community',
 //      subredditModel);

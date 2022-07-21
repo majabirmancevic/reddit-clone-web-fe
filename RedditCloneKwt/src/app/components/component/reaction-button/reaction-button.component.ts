@@ -1,10 +1,12 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { PostModel } from '../post-model';
 import { VotePayload } from './vote-payload';
-import { VoteType } from './vote-type';
+
 import { VoteService } from '../vote.service';
 import { AuthService } from 'src/app/service/auth.service';
 import { PostService } from '../post.service';
+import { throwError } from 'rxjs/internal/observable/throwError';
+import { ReactionType } from './reaction-type';
 //import { faArrowUp, faArrowDown } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -14,25 +16,51 @@ import { PostService } from '../post.service';
 })
 export class ReactionButtonComponent implements OnInit {
 
-  @Input() post!: PostModel;
+  @Input() post: PostModel;
   votePayload: VotePayload;
- // faArrowUp = faArrowUp;
- // faArrowDown = faArrowDown;
-  upvoteColor!: string;
-  downvoteColor!: string;
-  isLoggedIn!: boolean;
+  isLoggedIn: boolean;
+
+  
+
+  didVote = false;
 
   constructor(private voteService: VoteService, private authService: AuthService,
     private postService: PostService) { 
 
       this.votePayload = {
-        voteType: VoteType.UPVOTE,
-        postId: 0
+        reactionType: undefined,
+        postId: undefined
       }
-      
+      this.authService.loggedIn.subscribe((data: boolean) => this.isLoggedIn = data);
     }
 
   ngOnInit(): void {
+    this.updateVoteDetails();
+  }
+
+  upvotePost() {
+    this.votePayload.reactionType = ReactionType.UPVOTE;
+    this.vote();
+    this.didVote = true;
+  }
+
+  downvotePost() {
+    this.votePayload.reactionType = ReactionType.DOWNVOTE;
+    this.vote();
+    this.didVote = true;
+  }
+
+  private vote() {
+    this.votePayload.postId = this.post.id;
+    this.voteService.votePost(this.votePayload).subscribe(() => {
+      this.updateVoteDetails();
+    });
+  }
+
+  private updateVoteDetails() {
+    this.postService.getPost(this.post.id).subscribe(post => {
+      this.post = post;
+    });
   }
 
   

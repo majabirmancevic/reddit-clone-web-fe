@@ -1,6 +1,6 @@
-import { VoteType } from './vote-type';
+import { ReactionType } from './reaction-type';
 
 export class VotePayload {
-    voteType!: VoteType;
-    postId!: number;
+    reactionType: ReactionType;
+    postId: number;
 }

@@ -12,8 +12,8 @@ import { throwError } from 'rxjs';
 })
 export class CreateCommunityComponent implements OnInit {
 
-  createCommunityForm! : FormGroup;
-  communityModel! : CommunityModel;
+  createCommunityForm : FormGroup;
+  communityModel : CommunityModel;
   title = new FormControl('');
   description = new FormControl('');
 

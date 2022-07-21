@@ -1,11 +1,8 @@
 import { EventEmitter, Injectable, Output } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpHeaders } from '@angular/common/http';
 import { RegistrationRequestPayload } from '../components/registration/registration-request.payload';
-import { map, tap } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 import { LoginRequestPayload } from '../components/login/login-request.payload';
-import { LoginResponse } from '../components/login/login-response.payload';
-import { LocalStorageService } from 'ngx-webstorage';
-import { Observable } from 'rxjs';
 import { ConfigService } from './config.service';
 import { Router } from '@angular/router';
 import { ApiService } from './api.service';
@@ -18,6 +15,8 @@ import { UserService } from './user.service';
 })
 export class AuthService {
 
+  @Output() loggedIn: EventEmitter<boolean> = new EventEmitter();
+  @Output() username: EventEmitter<string> = new EventEmitter();
 
   constructor(
     private apiService: ApiService,
@@ -44,8 +43,13 @@ export class AuthService {
         this.access_token = res.authenticationToken;
         localStorage.setItem("authenticationToken", res.authenticationToken)
         localStorage.setItem("username", res.username)
-        localStorage.setItem("expiresAt", res.expiresAt)        
+        localStorage.setItem("expiresAt", res.expiresAt)   
+        
+        this.loggedIn.emit(true);
+        this.username.emit(res.username);
       }));
+
+      
   }
 
   signup(user:RegistrationRequestPayload){
@@ -58,21 +62,33 @@ export class AuthService {
         console.log('Sign up success');
       }));
   }
+
+ 
    
   logout() {
     this.userService.currentUser = null;
     this.access_token = null;
-    this.router.navigate(['/login']);
+    this.router.navigate(['/']);
+    localStorage.clear();
+
   }
 
-  tokenIsPresent() {
-    return this.access_token != undefined && this.access_token != null;
+  getJwtToken() {
+    return localStorage.getItem('authenticationToken');
   }
 
-  getToken() {
-    return this.access_token;
+  getUserName() {
+    return localStorage.getItem('username');
   }
 
-  
+  isLoggedIn(): boolean {
+    return this.getJwtToken() != null && this.getJwtToken() != undefined ;
+  }
+
+//  tokenIsPresent() {
+//    return this.access_token != undefined && this.access_token != null;
+//  }
+
+
 
 }

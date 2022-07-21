@@ -1,20 +1,25 @@
 <!-- Display Posts-->
-<div class="row post" *ngFor="let post of posts">
-  <app-reaction-button [post]="post"></app-reaction-button>
-    <!-- Section to Display Post Information-->
-    <div class="col-md-11">
-      <span class="community-info">
-        <span class="community-text"><a class="posturl" routerLink="">{{post.communityName}}</a></span>
-        <span> . Posted by <a class="username" >{{post.userName}}</a></span>
-        <span> . {{post.duration}}</span>
-      </span>
-      <hr />
-      <div class="post-title">
-        <a class="postname" >{{post.postName}}</a>
-      </div>
-      <div>
-        <p class="post-text" [innerHtml]="post.text"></p>
-      </div>
-      <hr />
+<div class="row post">
+  <app-reaction-button *ngIf="isLoggedIn" [post]="post"></app-reaction-button>
+  <!-- Section to Display Post Information-->
+  <div class="col-md-11">
+    <span class="community-info">
+      <span class="community-text"><a class="posturl" (click)="goToCommunity(communityId)"> Community:
+          {{post.communityName}}</a></span> <br>
+      <span>Posted by {{post.userName}} </span><br>
+      <span>{{post.duration}}</span> <br>
+    </span>
+
+    <div class="post-title">
+      <span class="postname">{{post.postName}}</span>
+      <p class="post-text">{{post.text}}</p>
     </div>
+    <hr>
+    <div>
+      <span style="font-size: 20px;">Comments({{post.commentCount}})</span>
+      <button (click)="goToPost(post.id)" class="btn-sm btn-info" style="text-align: right; margin-left: 10px;">View
+        post</button>
+    </div>
+
   </div>
+</div>

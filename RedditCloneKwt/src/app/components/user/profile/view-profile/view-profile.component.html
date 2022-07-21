@@ -1,0 +1,65 @@
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <!-- Page title -->
+            <div class="my-5">
+                <h3>My Profile</h3>
+                <hr>
+            </div>
+            <!-- Form START -->
+            <form class="profile-details">
+                <div class="row mb-5 gx-5">
+                    <!-- Contact detail -->
+                    <div class="col-xxl-8 mb-5 mb-xxl-0">
+                        <div class="bg-secondary-soft px-4 py-5 rounded">
+                            <div class="row g-3">
+                                <h4 class="mb-4 mt-0">Profile detail</h4>
+
+                                <!-- Username -->
+                                <div class="col-md-6">
+                                    <label for="username" class="form-label">Username</label>
+                                    <input type="text" class="form-control" id="username" value={{username}} readonly>
+                                </div>
+                                <!-- Email -->
+                                <div class="col-md-6">
+                                    <label class="form-label">Email</label>
+                                    <input type="email" class="form-control" placeholder="" aria-label="Email"
+                                        value={{email}} readonly>
+                                </div>
+                                <!-- Description -->
+                                <div class="col-md-6">
+                                    <label class="form-label">Description</label>
+                                    <input type="text" class="form-control" placeholder="Something about you.."
+                                        value={{description}} readonly>
+
+                                </div>
+                                <!-- Display name -->
+                                <div class="col-md-6">
+                                    <label class="form-label">Display name</label>
+                                    <input type="text" class="form-control" placeholder="Your display name.."
+                                        value={{displayName}} readonly>
+                                </div>
+
+                            </div>
+                        </div> <!-- Row END -->
+                    </div>
+                </div>
+                <div class="gap-3 d-md-flex justify-content-md-end text-center">
+                    <button (click)="updateProfile(id)" class="btn btn-primary btn-lg">Update profile</button>
+                    <button type="button" routerLink="/" class="btn btn-secondary btn-lg ">Cancel</button>
+                </div>
+            </form> <!-- Form END -->
+
+
+            <div class="bg-secondary-soft px-4 py-5 rounded">
+                <div class="row g-3">
+                    <button (click)="getKarma(id)" class="btn btn-primary btn-sm">Click for karma</button>
+                    <h5>Total karma : {{karma}}</h5>
+
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>

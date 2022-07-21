@@ -1,0 +1,69 @@
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <!-- Page title -->
+            <div class="my-5">
+                <h3>My Profile</h3>
+                <hr>
+            </div>
+            <!-- Form START -->
+            <form [formGroup]="form" (ngSubmit) = "onSubmit()">
+                <div class="row mb-5 gx-5">
+                    <!-- Contact detail -->
+                    <div class="col-xxl-8 mb-5 mb-xxl-0">
+                        <div class="bg-secondary-soft px-4 py-5 rounded">
+                            <div class="row g-3">
+                                <h4 class="mb-4 mt-0">Update profile details</h4>
+
+                                <!-- Username -->
+                                <div class="col-md-6">
+                                    <label for="username" class="form-label">Username</label>
+                                    <input [formControlName]="'username'" [(ngModel)]="request.username" type="text" class="form-control" id="username"
+                                        value="">
+                                </div>
+                                <!-- Email -->
+                                <div class="col-md-6">
+                                    <label class="form-label">Email</label>
+                                    <input [formControlName]="'email'" [(ngModel)]="request.email" type="email" class="form-control" placeholder="" aria-label="Email" id="email"
+                                        value="" readonly>
+                                </div>
+                                <!-- Description -->
+                                <div class="col-md-6">
+                                    <label class="form-label">Description</label>
+                                    <input [formControlName]="'description'" [(ngModel)]="request.description" type="text" class="form-control" placeholder="" value="" id="description">
+                                </div>
+                                <!-- Display name -->
+                                <div class="col-md-6">
+                                    <label class="form-label">Display name</label>
+                                    <input [formControlName]="'displayName'" [(ngModel)]="request.displayName" type="text" class="form-control" placeholder="" id="displayName" value="">
+                                </div>
+
+                            </div>
+                        </div> <!-- Row END -->
+                    </div>
+                </div>
+                <!-- change password -->
+                <div class="col-xxl-6">
+                    <div class="bg-secondary-soft px-4 py-5 rounded">
+                        <div class="row g-3">
+                            <h4 class="my-4">Change Password</h4>
+                            <!-- Old password -->
+                            <div class="col-md-6">
+                                <label for="exampleInputPassword1" class="form-label">Old password </label>
+                                <input [formControlName]="'oldPassword'" type="password" class="form-control" id="oldPassword">
+                            </div>
+                            <!-- New password -->
+                            <div class="col-md-6">
+                                <label for="exampleInputPassword2" class="form-label">New password </label>
+                                <input [formControlName]="'newPassword'" type="password" class="form-control" id="newPassword">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="gap-3 d-md-flex justify-content-md-end text-center">
+                    <button type="submit" class="btn btn-primary btn-sm">Update profile</button>
+                </div>
+            </form> <!-- Form END -->
+        </div>
+    </div>
+</div>

@@ -34,8 +34,10 @@ export class RegistrationComponent implements OnInit {
 
     this.signupRequestPayload = {
       username: '',
-      password: '',
+      password: '', 
       email: '',
+      displayName: '',
+      description: ''
     };
 
   }

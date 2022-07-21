@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthService, UserService } from 'src/app/service';
 
 @Component({
@@ -7,15 +8,21 @@ import { AuthService, UserService } from 'src/app/service';
   styleUrls: ['./nav-bar.component.css']
 })
 export class NavBarComponent implements OnInit {
+  user: any;
+  username: string;
+  isLoggedIn : boolean;
 
-  constructor(private userService: UserService, private authService: AuthService) { }
+  constructor(private userService: UserService, private authService: AuthService,  private router: Router) { }
 
   ngOnInit(): void {
+
+    this.authService.loggedIn.subscribe((data: boolean) => this.isLoggedIn = data);
+    this.authService.username.subscribe((data: string) => this.username = data);
+    this.isLoggedIn = this.authService.isLoggedIn();
+    this.username = this.authService.getUserName();
+    this.user = this.userService.currentUser;
   }
 
-  hasSignedIn() {
-    return this.authService.tokenIsPresent();
-  }
 
   userName() {
     const user = this.userService.currentUser;
@@ -24,5 +31,9 @@ export class NavBarComponent implements OnInit {
 
   logout() {
     this.authService.logout();
+  }
+
+  goToUserProfile(username : string) {
+    this.router.navigate(['view-profile', username]);
   }
 }

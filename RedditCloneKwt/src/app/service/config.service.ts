@@ -1,4 +1,4 @@
-import {Injectable} from '@angular/core';
+import { Injectable } from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
@@ -19,14 +19,14 @@ export class ConfigService {
   }
 
   //                 SIGNUP
-   private _signup_url = this._user_url + '/signup';
+  private _signup_url = this._user_url + '/signup';
 
-   get signup_url(): string {
-     return this._signup_url;
-   }
+  get signup_url(): string {
+    return this._signup_url;
+  }
 
   //                COMMUNITY 
-  
+
   // ../api/community/
   get community_url(): string {
     return this._community_url;
@@ -37,30 +37,37 @@ export class ConfigService {
   get updateCommunity_url(): string {
     return this._updateCommunity_url;
   }
-  
-//                    POST 
 
-//  ../api/posts/
-get post_url(): string {
-  return this._post_url;
-}
+  //                    POST 
 
-private _getPostsByCommunity_url = this._post_url + 'byCommunity/';
+  //  ../api/posts/
+  get post_url(): string {
+    return this._post_url;
+  }
 
-get getPostsByCommunity_url(): string {
-  return this._getPostsByCommunity_url;
-}
+  private _getPostsByCommunity_url = this._post_url + 'byCommunity/';
 
-private _getPostsByUser_url = this._post_url + 'byUser/';
+  get getPostsByCommunity_url(): string {
+    return this._getPostsByCommunity_url;
+  }
 
-get getPostsByUser_url(): string {
-  return this._getPostsByUser_url;
-}
+  private _getPostsByUser_url = this._post_url + 'byUser/';
 
-private _updatePost_url = this._post_url + 'edit/';
+  get getPostsByUser_url(): string {
+    return this._getPostsByUser_url;
+  }
 
-get updatePost_url(): string {
-  return this._updatePost_url;
-}
+  private _updatePost_url = this._post_url + 'edit/';
 
+  get updatePost_url(): string {
+    return this._updatePost_url;
+  }
+
+  //             USER
+
+  private _logged_user = this._user_url + '/loggedUser/';
+
+  get user_url(): string {
+    return this._logged_user;
+  }
 }

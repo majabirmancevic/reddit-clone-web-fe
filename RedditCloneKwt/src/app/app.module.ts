@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { ReactiveFormsModule,FormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -18,14 +18,19 @@ import { CreateCommunityComponent } from './components/community/create-communit
 import { ListCommunityComponent } from './components/community/list-community/list-community.component';
 
 
-import {ApiService} from './service/api.service';
-import {AuthService} from './service/auth.service';
-import {UserService} from './service/user.service';
-import {ConfigService} from './service/config.service';
+import { ApiService } from './service/api.service';
+import { AuthService } from './service/auth.service';
+import { UserService } from './service/user.service';
+import { ConfigService } from './service/config.service';
 
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptor } from './token-interceptor';
 import { ListPostsComponent } from './components/component/post/list-posts/list-posts.component';
+import { ViewProfileComponent } from './components/user/profile/view-profile/view-profile.component';
+import { UpdateProfileComponent } from './components/user/profile/update-profile/update-profile.component';
+import { ViewPostComponent } from './components/post/view-post/view-post.component';
+import { CommunityComponent } from './components/community/community/community.component';
+
 
 @NgModule({
   declarations: [
@@ -41,8 +46,13 @@ import { ListPostsComponent } from './components/component/post/list-posts/list-
     CreatePostComponent,
     CreateCommunityComponent,
     ListCommunityComponent,
-    ListPostsComponent   
+    ListPostsComponent,
+    ViewProfileComponent,
+    UpdateProfileComponent,
+    ViewPostComponent,
+    CommunityComponent
   ],
+
 
   imports: [
     BrowserModule,
@@ -50,7 +60,7 @@ import { ListPostsComponent } from './components/component/post/list-posts/list-
     ReactiveFormsModule,
     HttpClientModule,
     FormsModule
-    
+
   ],
   providers: [
     {

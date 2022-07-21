@@ -22,7 +22,7 @@ export class CreatePostComponent implements OnInit {
     {
       this.postPayload = {
         postName: '',
-        description: '',
+        text: '',
         communityName: ''
       }
     }
@@ -31,7 +31,7 @@ export class CreatePostComponent implements OnInit {
     this.createPostForm = new FormGroup({
       postName: new FormControl('', Validators.required),
       communityName: new FormControl('', Validators.required),
-      description: new FormControl('', Validators.required),
+      text: new FormControl('', Validators.required),
     });
     this.communityService.getAllCommunities().subscribe((data) => {
       this.communities = data;
@@ -41,7 +41,7 @@ export class CreatePostComponent implements OnInit {
   createPost() {
     this.postPayload.postName = this.createPostForm.get('postName').value;
     this.postPayload.communityName = this.createPostForm.get('communityName').value;
-    this.postPayload.description = this.createPostForm.get('description').value;
+    this.postPayload.text = this.createPostForm.get('text').value;
 
     this.postService.createPost(this.postPayload).subscribe((data) => {
       this.router.navigateByUrl('/');
