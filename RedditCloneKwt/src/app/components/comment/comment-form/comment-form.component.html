@@ -1,0 +1,10 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <textarea class="comment-form-textarea" formControlName="text"></textarea> <br>
+  <button class="btn-primary btn-sm" type="submit">
+    {{ submitLabel }}
+  </button>
+  <button *ngIf="hasCancelButton" type="button" class=" btn-primary btn-sm comment-form-button comment-form-cancel-button"
+    (click)="handleCancel.emit()">
+    Cancel
+  </button>
+</form>

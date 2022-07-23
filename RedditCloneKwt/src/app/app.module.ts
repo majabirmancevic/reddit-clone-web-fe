@@ -30,6 +30,9 @@ import { ViewProfileComponent } from './components/user/profile/view-profile/vie
 import { UpdateProfileComponent } from './components/user/profile/update-profile/update-profile.component';
 import { ViewPostComponent } from './components/post/view-post/view-post.component';
 import { CommunityComponent } from './components/community/community/community.component';
+import { CommentComponent } from './components/comment/comment/comment.component';
+import { CommentFormComponent } from './components/comment/comment-form/comment-form.component';
+import { ListCommentsComponent } from './components/comment/list-comments/list-comments.component';
 
 
 @NgModule({
@@ -50,7 +53,10 @@ import { CommunityComponent } from './components/community/community/community.c
     ViewProfileComponent,
     UpdateProfileComponent,
     ViewPostComponent,
-    CommunityComponent
+    CommunityComponent,
+    CommentComponent,
+    CommentFormComponent,
+    ListCommentsComponent
   ],
 
 

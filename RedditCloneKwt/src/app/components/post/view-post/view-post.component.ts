@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormControl,  FormGroup,  Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ApiService, AuthService } from 'src/app/service';
+import { ApiService, AuthService, UserService } from 'src/app/service';
 import { CommentPayload } from '../../comment/comment.payload';
 import { CommentService } from '../../comment/comment.service';
 import { PostModel } from '../../component/post-model';
@@ -15,6 +15,8 @@ import { PostService } from '../../component/post.service';
 export class ViewPostComponent implements OnInit {
 
   postId: number;
+  currentUserId! : number;
+  user :any;
   post: PostModel;
   form: FormGroup;
   commentPayload: CommentPayload;
@@ -22,6 +24,7 @@ export class ViewPostComponent implements OnInit {
   isLoggedIn : boolean;
 
   constructor(private router: Router,
+    private userService: UserService,
     private apiService: ApiService,
     private authService : AuthService,
     private postService: PostService,
@@ -29,21 +32,14 @@ export class ViewPostComponent implements OnInit {
     private commentService: CommentService) {
 
     this.postId = this.activateRoute.snapshot.params.id;
-
-    this.form = new FormGroup({
-      text: new FormControl('', Validators.required)
-    });
-    this.commentPayload = {
-      text: '',
-      postId: this.postId
-    };
   }
 
   ngOnInit(): void {
     this.authService.loggedIn.subscribe((data: boolean) => this.isLoggedIn = data);
     this.isLoggedIn = this.authService.isLoggedIn();
     this.getPostById();
-    this.getCommentsForPost();
+    
+
   }
 
   private getPostById() {
@@ -52,21 +48,22 @@ export class ViewPostComponent implements OnInit {
     });
   }
 
-  postComment() {
-    this.commentPayload.text = this.form.get('text').value;
-    this.commentService.postComment(this.commentPayload).subscribe(data => {
-      this.form.get('text').setValue('');
-      this.getCommentsForPost();
-    });
-  }
+
+  // postComment() {
+  //   this.commentPayload.text = this.form.get('text').value;
+  //   this.commentService.postComment(this.commentPayload).subscribe(data => {
+  //     this.form.get('text').setValue('');
+  //     this.getCommentsForPost();
+  //     console.log(this.commentPayload);
+  //   });
+  // }
 
 
-
-  private getCommentsForPost() {
-    this.commentService.getAllCommentsForPost(this.postId).subscribe(data => {
-      this.comments = data;
-    });
-  }
+  // private getCommentsForPost() {
+  //   this.commentService.getAllCommentsForPost(this.postId).subscribe(data => {
+  //     this.comments = data;
+  //   });
+  // }
 
   goToPost(id: number) {
     this.router.navigate(['post', id]);

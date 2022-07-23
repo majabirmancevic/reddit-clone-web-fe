@@ -20,7 +20,6 @@ export class AuthService {
 
   constructor(
     private apiService: ApiService,
-    private userService: UserService,
     private config: ConfigService,
     private router: Router ) { }
 
@@ -66,9 +65,9 @@ export class AuthService {
  
    
   logout() {
-    this.userService.currentUser = null;
     this.access_token = null;
-    this.router.navigate(['/']);
+    this.loggedIn.emit(false);
+    this.router.navigate(['']);
     localStorage.clear();
 
   }
