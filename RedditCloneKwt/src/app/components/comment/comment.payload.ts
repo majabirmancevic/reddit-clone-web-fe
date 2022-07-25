@@ -6,4 +6,5 @@ export class CommentPayload{
     timestamp?: string;
     userId? : number;
     parentId? : null | number;
+    reactionCount : number;
 }

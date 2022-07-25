@@ -19,9 +19,6 @@ export class ReactionButtonComponent implements OnInit {
   @Input() post: PostModel;
   votePayload: VotePayload;
   isLoggedIn: boolean;
-
-  
-
   didVote = false;
 
   constructor(private voteService: VoteService, private authService: AuthService,
@@ -29,7 +26,7 @@ export class ReactionButtonComponent implements OnInit {
 
       this.votePayload = {
         reactionType: undefined,
-        postId: undefined
+        id: undefined
       }
       this.authService.loggedIn.subscribe((data: boolean) => this.isLoggedIn = data);
     }
@@ -51,7 +48,7 @@ export class ReactionButtonComponent implements OnInit {
   }
 
   private vote() {
-    this.votePayload.postId = this.post.id;
+    this.votePayload.id = this.post.id;
     this.voteService.votePost(this.votePayload).subscribe(() => {
       this.updateVoteDetails();
     });

@@ -22,6 +22,7 @@ export class PostComponent implements OnInit {
   commentPayload: CommentPayload;
   comments: CommentPayload[];
 
+
   communityId;
   isLoggedIn : boolean;
   constructor(
@@ -39,6 +40,8 @@ export class PostComponent implements OnInit {
     this.authService.loggedIn.subscribe((data: boolean) => this.isLoggedIn = data);
     this.isLoggedIn = this.authService.isLoggedIn();
   }
+
+  
 
   private getCommunityByName() {
     this.communityService.getCommunityByName(this.post.communityName).subscribe(data => {

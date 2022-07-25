@@ -37,7 +37,8 @@ export class RegistrationComponent implements OnInit {
       password: '', 
       email: '',
       displayName: '',
-      description: ''
+      description: '',
+      avatar : ''
     };
 
   }

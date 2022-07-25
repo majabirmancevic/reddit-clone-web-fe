@@ -33,6 +33,7 @@ import { CommunityComponent } from './components/community/community/community.c
 import { CommentComponent } from './components/comment/comment/comment.component';
 import { CommentFormComponent } from './components/comment/comment-form/comment-form.component';
 import { ListCommentsComponent } from './components/comment/list-comments/list-comments.component';
+import { ReactionCommentComponent } from './components/component/reaction-button/reaction-comment/reaction-comment.component';
 
 
 @NgModule({
@@ -56,7 +57,8 @@ import { ListCommentsComponent } from './components/comment/list-comments/list-c
     CommunityComponent,
     CommentComponent,
     CommentFormComponent,
-    ListCommentsComponent
+    ListCommentsComponent,
+    ReactionCommentComponent
   ],
 
 

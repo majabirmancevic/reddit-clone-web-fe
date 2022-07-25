@@ -17,15 +17,19 @@ export class CreatePostComponent implements OnInit {
   postPayload: CreatePostPayload;
   communities: Array<CommunityModel>;
 
+  cardImageBase64: string;
+  imageError: string;
+  isImageSaved: boolean;
   constructor(private router: Router, private postService: PostService,
-    private communityService: CommunityService) 
-    {
-      this.postPayload = {
-        postName: '',
-        text: '',
-        communityName: ''
-      }
+    private communityService: CommunityService) {
+
+    this.postPayload = {
+      postName: '',
+      text: '',
+      communityName: '',
+      imagePath : ''
     }
+  }
 
   ngOnInit(): void {
     this.createPostForm = new FormGroup({
@@ -38,10 +42,44 @@ export class CreatePostComponent implements OnInit {
     });
   }
 
+  fileChangeEvent(fileInput: any) {
+
+    if (fileInput.target.files && fileInput.target.files[0]) {
+
+      const max_size = 20971520;
+
+      if (fileInput.target.files[0].size > max_size) {
+        this.imageError =
+          'Maximum size allowed is ' + max_size / 1000 + 'Mb';
+
+        return false;
+      }
+
+      const reader = new FileReader();
+      reader.onload = (e: any) => {
+        const image = new Image();
+        image.src = e.target.result;
+        image.onload = rs => {
+
+          const img_height = rs.currentTarget['height'];
+          const img_width = rs.currentTarget['width'];
+
+          const imgBase64Path = e.target.result;
+          this.cardImageBase64 = imgBase64Path;
+          this.isImageSaved = true;
+        };
+      };
+
+      reader.readAsDataURL(fileInput.target.files[0]);
+    }
+  }
+
+
   createPost() {
     this.postPayload.postName = this.createPostForm.get('postName').value;
     this.postPayload.communityName = this.createPostForm.get('communityName').value;
     this.postPayload.text = this.createPostForm.get('text').value;
+    this.postPayload.imagePath = this.cardImageBase64;
 
     this.postService.createPost(this.postPayload).subscribe((data) => {
       this.router.navigateByUrl('/');

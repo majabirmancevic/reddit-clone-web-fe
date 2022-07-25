@@ -23,6 +23,10 @@ export class CommentService {
     return this.apiService.get(`http://localhost:8080/api/comments/byUser/${userName}`);
   }
 
+  getComment(id: number){
+    return this.apiService.get(`http://localhost:8080/api/comments/${id}`);
+  }
+
   deleteComment(id: number) {
     return this.http.delete(`http://localhost:8080/api/comments/delete/${id}`);
   }

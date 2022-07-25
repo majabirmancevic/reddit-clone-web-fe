@@ -5,6 +5,7 @@ export class PostModel {
     reactionCount : number;
     userName : string;
     communityName : string;
+    imagePath : string;
     commentCount : number;
     duration : string;
     upVote : boolean;

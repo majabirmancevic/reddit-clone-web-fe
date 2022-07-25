@@ -4,4 +4,5 @@ export interface RegistrationRequestPayload {
     email: string;
     displayName:string;
     description:string;
+    avatar : string;
 }

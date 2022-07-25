@@ -13,6 +13,7 @@
     <div class="post-title">
       <span class="postname">{{post.postName}}</span>
       <p class="post-text">{{post.text}}</p>
+      <img  *ngIf="post.imagePath" class="img" src={{post.imagePath}} height="200px" width="300px"/>
     </div>
     <hr>
     <div>

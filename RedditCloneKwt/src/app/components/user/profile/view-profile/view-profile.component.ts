@@ -20,6 +20,7 @@ export class ViewProfileComponent implements OnInit {
   username : string;
   description : string;
   displayName :string;
+  avatar : string;
 
   constructor( private apiService: ApiService,
     private config: ConfigService,
@@ -47,6 +48,7 @@ export class ViewProfileComponent implements OnInit {
         this.email = data.email
         this.displayName = data.displayName
         this.description = data.description
+        this.avatar = data.avatar
       })
   }
 

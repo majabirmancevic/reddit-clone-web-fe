@@ -36,30 +36,17 @@
                                 <div class="col-md-6">
                                     <label class="form-label">Display name</label>
                                     <input [formControlName]="'displayName'" [(ngModel)]="request.displayName" type="text" class="form-control" placeholder="" id="displayName" value="">
+                                </div> <br>
+                                <div >
+                                    <label for="pictureInput">Upload picture</label><br>
+                                    <input class="form-control" type="file" id="selectAvatar" (change)="fileChangeEvent($event)" accept="image/png, image/jpeg" /> <br>
+                                    <img *ngIf="isImageSaved" class="img" [src]="cardImageBase64" height="200px" width="300px"/>
                                 </div>
-
+                                <br>
                             </div>
                         </div> <!-- Row END -->
                     </div>
-                </div>
-                <!-- change password -->
-                <div class="col-xxl-6">
-                    <div class="bg-secondary-soft px-4 py-5 rounded">
-                        <div class="row g-3">
-                            <h4 class="my-4">Change Password</h4>
-                            <!-- Old password -->
-                            <div class="col-md-6">
-                                <label for="exampleInputPassword1" class="form-label">Old password </label>
-                                <input [formControlName]="'oldPassword'" type="password" class="form-control" id="oldPassword">
-                            </div>
-                            <!-- New password -->
-                            <div class="col-md-6">
-                                <label for="exampleInputPassword2" class="form-label">New password </label>
-                                <input [formControlName]="'newPassword'" type="password" class="form-control" id="newPassword">
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                </div>              
                 <div class="gap-3 d-md-flex justify-content-md-end text-center">
                     <button type="submit" class="btn btn-primary btn-sm">Update profile</button>
                 </div>

@@ -1,0 +1,11 @@
+<div class="col-md-1">
+    <div class="d-flex flex-column votebox">
+        <div class="p-2">
+            <button (click)="upvote()" class="btn-sm btn-success" [disabled]="didVote">UPVOTE</button>
+        </div>
+        <div class="p-2 votecount">{{comment.reactionCount}}</div>
+        <div class="p-2">
+            <button (click)="downvote()" class="btn-sm btn-danger" [disabled]="didVote">DOWNVOTE</button>
+        </div>
+    </div>
+</div>

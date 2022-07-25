@@ -17,6 +17,10 @@ export class UpdateProfileComponent implements OnInit {
   request : RegistrationRequestPayload ;
   form: FormGroup;
 
+  cardImageBase64: string;
+  imageError: string;
+  isImageSaved: boolean;
+
   constructor
   (
     private userService: UserService,
@@ -30,7 +34,8 @@ export class UpdateProfileComponent implements OnInit {
         password: '', 
         email: '',
         displayName: '',
-        description: ''
+        description: '',
+        avatar : ''
       };
      }
 
@@ -39,7 +44,7 @@ export class UpdateProfileComponent implements OnInit {
 
     this.userService.getUserById(this.id).subscribe(data => {
       this.request = data;
-      this.password = data.password;
+      this.password = data.password
       this.username = data.username;
     });// error => console.log(error));
 
@@ -54,13 +59,44 @@ export class UpdateProfileComponent implements OnInit {
     });
   }
 
+  fileChangeEvent(fileInput: any) {
 
+    if (fileInput.target.files && fileInput.target.files[0]) {
+
+      const max_size = 20971520;
+
+      if (fileInput.target.files[0].size > max_size) {
+        this.imageError =
+          'Maximum size allowed is ' + max_size / 1000 + 'Mb';
+
+        return false;
+      }
+
+      const reader = new FileReader();
+      reader.onload = (e: any) => {
+        const image = new Image();
+        image.src = e.target.result;
+        image.onload = rs => {
+
+          const img_height = rs.currentTarget['height'];
+          const img_width = rs.currentTarget['width'];
+
+          const imgBase64Path = e.target.result;
+          this.cardImageBase64 = imgBase64Path;
+          this.isImageSaved = true;
+        };
+      };
+
+      reader.readAsDataURL(fileInput.target.files[0]);
+    }
+  }
   onSubmit():void{
 
     this.request.username = this.form.get('username').value;
     this.request.email = this.form.get('email').value;
     this.request.displayName = this.form.get('displayName').value;
     this.request.description = this.form.get('description').value;
+    this.request.avatar = this.cardImageBase64;
 
     if(this.form.get('oldPassword').value === this.password){
       this.password = this.form.get('newPassword').value;
