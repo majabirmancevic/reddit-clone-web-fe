@@ -34,6 +34,7 @@ import { CommentComponent } from './components/comment/comment/comment.component
 import { CommentFormComponent } from './components/comment/comment-form/comment-form.component';
 import { ListCommentsComponent } from './components/comment/list-comments/list-comments.component';
 import { ReactionCommentComponent } from './components/component/reaction-button/reaction-comment/reaction-comment.component';
+import { ChangePasswordComponent } from './components/user/change-password/change-password.component';
 
 
 @NgModule({
@@ -58,7 +59,8 @@ import { ReactionCommentComponent } from './components/component/reaction-button
     CommentComponent,
     CommentFormComponent,
     ListCommentsComponent,
-    ReactionCommentComponent
+    ReactionCommentComponent,
+    ChangePasswordComponent
   ],
 
 

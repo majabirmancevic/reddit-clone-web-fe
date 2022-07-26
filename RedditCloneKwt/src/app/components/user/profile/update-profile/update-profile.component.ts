@@ -13,7 +13,8 @@ export class UpdateProfileComponent implements OnInit {
 
   id: number;
   username: string;
-  password: string;
+  user: any;
+
   request : RegistrationRequestPayload ;
   form: FormGroup;
 
@@ -43,19 +44,16 @@ export class UpdateProfileComponent implements OnInit {
     this.id = this.route.snapshot.params['id'];
 
     this.userService.getUserById(this.id).subscribe(data => {
-      this.request = data;
-      this.password = data.password
+      this.user = data;
+    //  this.password = data.password
       this.username = data.username;
-    });// error => console.log(error));
+    });
 
     this.form = new FormGroup({
       username: new FormControl(''),
       email: new FormControl(''),
-//      password: new FormControl(''),
       displayName: new FormControl(''),
-      description: new FormControl(''),
-      oldPassword : new FormControl(''),
-      newPassword : new FormControl('')
+      description: new FormControl('')
     });
   }
 
@@ -98,12 +96,12 @@ export class UpdateProfileComponent implements OnInit {
     this.request.description = this.form.get('description').value;
     this.request.avatar = this.cardImageBase64;
 
-    if(this.form.get('oldPassword').value === this.password){
-      this.password = this.form.get('newPassword').value;
-      this.request.password = this.password;
-    }else{
-      console.log("Old password isn't correct!")
-    }
+    // if(this.form.get('oldPassword').value === this.password){
+    //   this.password = this.form.get('newPassword').value;
+    //   this.request.password = this.password;
+    // }else{
+    //   console.log("Old password isn't correct!")
+    // }
     
     this.userService.updateUser(this.request,this.id).subscribe(data => {
       this.goToUserProfile();
@@ -118,5 +116,9 @@ export class UpdateProfileComponent implements OnInit {
 
   goToUserProfile(){
     this.router.navigate(['view-profile',this.username])
+  }
+
+  goToChangePassword(){
+    this.router.navigate(['change-password',this.id])
   }
 }

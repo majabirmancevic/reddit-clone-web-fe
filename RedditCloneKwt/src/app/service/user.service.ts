@@ -4,6 +4,7 @@ import {ConfigService} from './config.service';
 import {map} from 'rxjs/operators';
 import { RegistrationRequestPayload } from '../components/registration/registration-request.payload';
 import { AuthService } from './auth.service';
+import { PasswordDto } from '../components/user/change-password/password-dto';
 
 @Injectable({
   providedIn: 'root'
@@ -31,6 +32,10 @@ export class UserService {
     .pipe(map(() => {
       console.log('Update success');
     }));
+  }
+
+  changePassword(id:number, passwordDto:PasswordDto){
+    return this.apiService.post(`http://localhost:8080/api/auth/changePassword/${id}`, JSON.stringify(passwordDto))
   }
 
   getUserById(userId:number){

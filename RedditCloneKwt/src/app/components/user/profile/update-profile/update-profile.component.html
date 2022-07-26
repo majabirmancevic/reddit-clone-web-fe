@@ -18,24 +18,24 @@
                                 <!-- Username -->
                                 <div class="col-md-6">
                                     <label for="username" class="form-label">Username</label>
-                                    <input [formControlName]="'username'" [(ngModel)]="request.username" type="text" class="form-control" id="username"
+                                    <input [formControlName]="'username'" [(ngModel)]="user.username" type="text" class="form-control" id="username"
                                         value="">
                                 </div>
                                 <!-- Email -->
                                 <div class="col-md-6">
                                     <label class="form-label">Email</label>
-                                    <input [formControlName]="'email'" [(ngModel)]="request.email" type="email" class="form-control" placeholder="" aria-label="Email" id="email"
+                                    <input [formControlName]="'email'" [(ngModel)]="user.email" type="email" class="form-control" placeholder="" aria-label="Email" id="email"
                                         value="" readonly>
                                 </div>
                                 <!-- Description -->
                                 <div class="col-md-6">
                                     <label class="form-label">Description</label>
-                                    <input [formControlName]="'description'" [(ngModel)]="request.description" type="text" class="form-control" placeholder="" value="" id="description">
+                                    <input [formControlName]="'description'" [(ngModel)]="user.description" type="text" class="form-control" placeholder="" value="" id="description">
                                 </div>
                                 <!-- Display name -->
                                 <div class="col-md-6">
                                     <label class="form-label">Display name</label>
-                                    <input [formControlName]="'displayName'" [(ngModel)]="request.displayName" type="text" class="form-control" placeholder="" id="displayName" value="">
+                                    <input [formControlName]="'displayName'" [(ngModel)]="user.displayName" type="text" class="form-control" placeholder="" id="displayName" value="">
                                 </div> <br>
                                 <div >
                                     <label for="pictureInput">Upload picture</label><br>
@@ -43,14 +43,16 @@
                                     <img *ngIf="isImageSaved" class="img" [src]="cardImageBase64" height="200px" width="300px"/>
                                 </div>
                                 <br>
+                                <button class="btn btn-primary btn-sm">Update profile</button>
                             </div>
                         </div> <!-- Row END -->
                     </div>
                 </div>              
-                <div class="gap-3 d-md-flex justify-content-md-end text-center">
-                    <button type="submit" class="btn btn-primary btn-sm">Update profile</button>
-                </div>
             </form> <!-- Form END -->
+        </div>
+        <div>
+            <button (click)="goToChangePassword()" class="btn btn-primary btn-sm">Change password</button>
         </div>
     </div>
 </div>
+

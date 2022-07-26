@@ -10,6 +10,7 @@ import { LoginComponent } from './components/login/login.component';
 import { CreatePostComponent } from './components/post/create-post/create-post.component';
 import { ViewPostComponent } from './components/post/view-post/view-post.component';
 import { RegistrationComponent } from './components/registration/registration.component';
+import { ChangePasswordComponent } from './components/user/change-password/change-password.component';
 import { UpdateProfileComponent } from './components/user/profile/update-profile/update-profile.component';
 import { ViewProfileComponent } from './components/user/profile/view-profile/view-profile.component';
 import { AuthGuard } from './service/auth.guard';
@@ -26,7 +27,8 @@ const routes: Routes = [
   { path: 'community/:id', component : CommunityComponent},
   { path: 'view-profile/:name', component: ViewProfileComponent },
   { path: 'view-post/:id', component: ViewPostComponent },
-  { path: 'update-profile/:id', component: UpdateProfileComponent }
+  { path: 'update-profile/:id', component: UpdateProfileComponent },
+  { path: 'change-password/:id', component: ChangePasswordComponent }
 
 ];
 
