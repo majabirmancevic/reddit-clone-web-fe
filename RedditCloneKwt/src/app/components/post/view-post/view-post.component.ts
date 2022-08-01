@@ -15,13 +15,18 @@ import { PostService } from '../../component/post.service';
 export class ViewPostComponent implements OnInit {
 
   postId: number;
-  currentUserId! : number;
+
+  currentUserId : number;
+  postUserId:number; 
   user :any;
   post: PostModel;
   form: FormGroup;
   commentPayload: CommentPayload;
   comments: CommentPayload[];
   isLoggedIn : boolean;
+  displayName : string;
+
+  userType : string;
 
   constructor(private router: Router,
     private userService: UserService,
@@ -37,37 +42,52 @@ export class ViewPostComponent implements OnInit {
   ngOnInit(): void {
     this.authService.loggedIn.subscribe((data: boolean) => this.isLoggedIn = data);
     this.isLoggedIn = this.authService.isLoggedIn();
+    this.getCurrentUser();
     this.getPostById();
     
-
   }
 
   private getPostById() {
     this.postService.getPost(this.postId).subscribe(data => {
       this.post = data;
+      this.displayName = data.displayName;
+      console.log(data);
     });
   }
-
-
-  // postComment() {
-  //   this.commentPayload.text = this.form.get('text').value;
-  //   this.commentService.postComment(this.commentPayload).subscribe(data => {
-  //     this.form.get('text').setValue('');
-  //     this.getCommentsForPost();
-  //     console.log(this.commentPayload);
-  //   });
-  // }
-
-
-  // private getCommentsForPost() {
-  //   this.commentService.getAllCommentsForPost(this.postId).subscribe(data => {
-  //     this.comments = data;
-  //   });
-  // }
-
-  goToPost(id: number) {
-    this.router.navigate(['post', id]);
+  
+  getCurrentUser(){
+    this.userService.getMyInfo(this.authService.getUserName()).subscribe(user =>
+      {
+        this.currentUserId = user.id;
+      
+      });
   }
 
+  canEdit(): boolean {
+    if(this.currentUserId === this.post.userId){
+      return true;
+    }
+    else{
+      return false;
+    }
+  }
 
+  canDelete(): boolean {
+    if(this.currentUserId === this.post.userId){
+      return true;
+    }
+    else{
+      return false;
+    }
+  }
+ 
+  goToEditPost(){
+    this.router.navigate(['update-post', this.postId]);
+  }
+
+  deletePost(){
+    this.postService.deletePost(this.postId).subscribe((data) =>{
+      this.router.navigate(['post', this.postId]);
+    })
+  }
 }

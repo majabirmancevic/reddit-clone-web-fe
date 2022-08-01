@@ -1,23 +1,32 @@
 <!-- Display Posts-->
-<div class="row post">
+<div *ngIf="communityId" class="row post">
   <app-reaction-button *ngIf="isLoggedIn" [post]="post"></app-reaction-button>
   <!-- Section to Display Post Information-->
-  <div class="col-md-11">
+  <div  class="col-md-11">
     <span class="community-info">
       <span class="community-text"><a class="posturl" (click)="goToCommunity(communityId)"> Community:
           {{post.communityName}}</a></span> <br>
-      <span>Posted by {{post.userName}} </span><br>
+      <span *ngIf="post.displayName; else templateUserName">
+        Posted by {{post.displayName}}
+      </span>
+      <ng-template #templateUserName>
+        <span>
+          Posted by {{post.userName}}
+        </span>
+      </ng-template>
       <span>{{post.duration}}</span> <br>
     </span>
 
     <div class="post-title">
       <span class="postname">{{post.postName}}</span>
-      <p class="post-text">{{post.text}}</p>
-      <img  *ngIf="post.imagePath" class="img" src={{post.imagePath}} height="200px" width="300px"/>
+      <p class="post-text">{{post.text}}</p> 
     </div>
+      <span class="flair" *ngIf="post.flair" style="background-color: rgb(124, 128, 132); color: rgb(220, 220, 225); border-radius: 5px;  font-style: italic; padding: 5px 10px; ">{{post.flair}}</span>     
+      <img *ngIf="post.imagePath" class="img" src={{post.imagePath}} height="200px" width="300px" />
+    
     <hr>
     <div>
-      <span style="font-size: 20px;">Comments({{post.commentCount}})</span>
+      <span style="font-size: 20px; text-align: center;">Comments({{post.commentCount}})</span>
       <button (click)="goToPost(post.id)" class="btn-sm btn-info" style="text-align: right; margin-left: 10px;">View
         post</button>
     </div>

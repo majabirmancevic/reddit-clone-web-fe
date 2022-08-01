@@ -43,9 +43,12 @@ export class AuthService {
         localStorage.setItem("authenticationToken", res.authenticationToken)
         localStorage.setItem("username", res.username)
         localStorage.setItem("expiresAt", res.expiresAt)   
-        
         this.loggedIn.emit(true);
         this.username.emit(res.username);
+
+        
+
+      
       }));
 
       
@@ -76,6 +79,7 @@ export class AuthService {
     return localStorage.getItem('authenticationToken');
   }
 
+
   getUserName() {
     return localStorage.getItem('username');
   }
@@ -83,6 +87,7 @@ export class AuthService {
   isLoggedIn(): boolean {
     return this.getJwtToken() != null && this.getJwtToken() != undefined ;
   }
+
 
 //  tokenIsPresent() {
 //    return this.access_token != undefined && this.access_token != null;

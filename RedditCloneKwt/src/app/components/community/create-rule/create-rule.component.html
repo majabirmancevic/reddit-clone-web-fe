@@ -1,0 +1,20 @@
+<div class="container">
+    <div class="row">
+      <div class="create-community-container">
+        <form class="post-form" [formGroup]="form" (ngSubmit)="createRule()">
+          <div class="form-group">
+            <div class="create-community-heading">Write new rule</div>
+            <hr />
+            <textarea type="text" [formControlName]="'rule'" style="width: 100%; margin-top: 5px" placeholder="New rule"
+              required autofocus></textarea>
+            <div>
+              <div style="margin-top: 5px" class="float-right">
+                <button (click)="discard()" class="btn-secondary btn-sm">Discard</button>
+                <button [disabled]="!form.valid" class="btn-primary btn-sm">Create</button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>

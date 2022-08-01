@@ -16,6 +16,7 @@ export class CreatePostComponent implements OnInit {
   createPostForm: FormGroup;
   postPayload: CreatePostPayload;
   communities: Array<CommunityModel>;
+  flairs: Array<String>;
 
   cardImageBase64: string;
   imageError: string;
@@ -28,6 +29,7 @@ export class CreatePostComponent implements OnInit {
       text: '',
       communityName: '',
       imagePath : ''
+      
     }
   }
 
@@ -36,10 +38,16 @@ export class CreatePostComponent implements OnInit {
       postName: new FormControl('', Validators.required),
       communityName: new FormControl('', Validators.required),
       text: new FormControl('', Validators.required),
+      flairName : new FormControl('')
     });
-    this.communityService.getAllCommunities().subscribe((data) => {
+    
+    this.communityService.getNotDeletedCommunities().subscribe((data) => {
       this.communities = data;
+      console.log(data)
     });
+    this.postService.getAllFlair().subscribe((data) => {
+      this.flairs = data;
+    })
   }
 
   fileChangeEvent(fileInput: any) {
@@ -80,6 +88,7 @@ export class CreatePostComponent implements OnInit {
     this.postPayload.communityName = this.createPostForm.get('communityName').value;
     this.postPayload.text = this.createPostForm.get('text').value;
     this.postPayload.imagePath = this.cardImageBase64;
+    this.postPayload.flair = this.createPostForm.get('flairName').value;
 
     this.postService.createPost(this.postPayload).subscribe((data) => {
       this.router.navigateByUrl('/');

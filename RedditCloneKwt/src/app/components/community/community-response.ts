@@ -3,4 +3,5 @@ export class CommunityModel {
     name: string;
     description: string;
     numberOfPosts?: number;
+    userId?:number;
 }

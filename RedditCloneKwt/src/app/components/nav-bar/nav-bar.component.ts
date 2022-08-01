@@ -10,6 +10,7 @@ import { AuthService, UserService } from 'src/app/service';
 export class NavBarComponent implements OnInit {
   user: any;
   username: string;
+  displayName : string;
   isLoggedIn : boolean;
 
   constructor(private userService: UserService, private authService: AuthService,  private router: Router) { }
@@ -20,7 +21,9 @@ export class NavBarComponent implements OnInit {
     this.authService.username.subscribe((data: string) => this.username = data);
     this.isLoggedIn = this.authService.isLoggedIn();
     this.username = this.authService.getUserName();
-    
+    this.userService.getMyInfo(this.authService.getUserName()).subscribe(data=>{
+    this.user = data, 
+    this.displayName = data.displayName});
   }
 
 

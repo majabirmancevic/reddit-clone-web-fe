@@ -35,6 +35,11 @@ export class PostService {
     return this.apiService.post(this.config.post_url , JSON.stringify(postPayload), header);
   }      
 
+  getAllFlair(){
+    return this.apiService.get(`http://localhost:8080/api/flairs/`)
+  }
+
+
   // getPost(id: number): Observable<PostModel> {
   //   return this.http.get<PostModel>('http://localhost:8080/api/posts/' + id);
   // }
@@ -59,6 +64,10 @@ export class PostService {
 
   updatePost(postId : number, postPayload: CreatePostPayload ){
     return this.apiService.put(this.config.updatePost_url + postId, postPayload)
+  }
+
+  deletePost(id:number){
+    return this.apiService.delete(`http://localhost:8080/api/posts/${id}`)
   }
 
 //  updatePost(postPayload: CreatePostPayload, id: number): Observable<any> {

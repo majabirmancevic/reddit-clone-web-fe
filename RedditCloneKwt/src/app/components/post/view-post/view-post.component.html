@@ -11,17 +11,30 @@
           <span class="community-info">
             <span class="community-text"><a class="posturl"> Community:
                 {{post.communityName}}</a></span> <br>
-            <span>Posted by {{post.userName}} </span><br>
+
+            <span *ngIf="post.displayName; else templateUserName">
+              Posted by {{post.displayName}}
+            </span>
+            <ng-template #templateUserName>
+              <span>
+                Posted by {{post.userName}}
+              </span>
+            </ng-template>
+
             <span>{{post.duration}}</span> <br>
           </span>
 
           <div class="post-title">
             <span class="postname">{{post.postName}}</span>
-            <p class="post-text" >{{post.text}}</p>
+            <p class="post-text">{{post.text}}</p>
           </div>
+          <span *ngIf="post.flair" style="background-color: rgb(124, 128, 132); color: rgb(220, 220, 225); border-radius: 5px;  font-style: italic; padding: 5px 10px ;">{{post.flair}}</span><br>
+          <img *ngIf="post.imagePath" class="img" src={{post.imagePath}} height="200px" width="300px" />
+          <button *ngIf="canEdit()" style="margin: 5px;" (click)="goToEditPost(this.post.id)" class="btn-primary btn-sm">Edit</button>
+          <button *ngIf="canDelete()" style="margin: 5px;" (click)="deletePost(this.post.id)" class="btn-primary btn-sm">Delete</button>
         </div>
       </div>
-      <app-list-comments ></app-list-comments>
+      <app-list-comments></app-list-comments>
       <hr>
     </div>
   </div>

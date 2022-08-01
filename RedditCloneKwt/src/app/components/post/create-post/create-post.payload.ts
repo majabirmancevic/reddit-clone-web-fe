@@ -3,4 +3,5 @@ export class CreatePostPayload {
     communityName?: string;
     text: string;
     imagePath : string;
+    flair? : string;
 }

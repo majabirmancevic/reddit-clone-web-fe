@@ -17,10 +17,17 @@
           <a class="nav-link" routerLink="/registration">Sign up</a>
         </li>
         <li *ngIf="isLoggedIn" class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
-            aria-expanded="false">
-            {{username}}
+          <a *ngIf="displayName; else templateUserName" class="nav-link dropdown-toggle" href="#"
+            id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            {{user.displayName}}
           </a>
+          <ng-template #templateUserName >
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+              aria-expanded="false">
+              {{username}}
+            </a>
+          </ng-template>
+
           <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
             <li><a class="dropdown-item" (click)="goToUserProfile(username)">View profile</a></li>
             <li>

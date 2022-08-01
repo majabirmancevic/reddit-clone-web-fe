@@ -38,8 +38,14 @@
                                     <label class="form-label">Display name</label>
                                     <input type="text" class="form-control" placeholder="Your display name.."
                                         value={{displayName}} readonly>
+                                    
                                 </div>
-                                <img  *ngIf="avatar" class="img" src={{avatar}} height="200px" width="300px"/>
+                                <div *ngIf="avatar" class="col-md-6">
+                                    <label for="avatar" class="form-label">Profile photo</label><br>
+                                    
+                                    <img class="img" src={{avatar}} />
+                                </div>
+                                
                             </div>
                         </div> <!-- Row END -->
                     </div>

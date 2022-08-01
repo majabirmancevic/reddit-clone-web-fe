@@ -38,7 +38,7 @@ export class ListCommentsComponent implements OnInit {
     this.getUser();
     console.log(this.userService.currentUser);
     this.getCommentsForPost();
-    this.currentUserId = this.userService.currentUser.id;
+    
   }
 
   getUser(){

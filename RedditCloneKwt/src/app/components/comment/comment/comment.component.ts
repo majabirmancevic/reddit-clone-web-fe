@@ -38,8 +38,7 @@ export class CommentComponent implements OnInit {
     this.canEdit = this.currentUserId === this.comment.userId;
     this.canDelete = this.currentUserId === this.comment.userId;
     this.replyId = this.parentId ? this.parentId : this.comment.id;
-    console.log("Comment.userId : " + this.comment.userId);
-    console.log("CurrentUserId : " + this.currentUserId);
+
   }
 
   isReplying(): boolean {

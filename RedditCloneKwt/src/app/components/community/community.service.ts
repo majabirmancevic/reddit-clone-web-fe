@@ -21,12 +21,18 @@ export class CommunityService {
     return this.apiService.get(this.config.community_url);
   }
 
+  getNotDeletedCommunities(){
+    return this.apiService.get(`http://localhost:8080/api/community/all`)
+  }
   getCommunity(id: number){
     return this.apiService.get(`http://localhost:8080/api/community/${id}`)
   }
 
   getCommunityByName(name: String){
     return this.apiService.get(`http://localhost:8080/api/community/byName/${name}`)
+  }
+  deleteCommunity(id: number, suspendedReason: string){
+    return this.apiService.post(`http://localhost:8080/api/community/${id}`,suspendedReason)
   }
 
 //  createCommunity(subredditModel: CommunityModel): Observable<CommunityModel> {
@@ -39,8 +45,8 @@ export class CommunityService {
   }
 
 
-  updateCommunity(postId : number, subredditModel: CommunityModel ){
-    return this.apiService.put(this.config.updateCommunity_url + postId, subredditModel)
+  updateCommunity(id : number, subredditModel: CommunityModel ){
+    return this.apiService.put(`http://localhost:8080/api/community/edit/${id}`,JSON.stringify(subredditModel));
   }
 
 //  updateCommunity(subredditModel: CommunityModel, id: number): Observable<any> {

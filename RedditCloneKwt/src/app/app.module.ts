@@ -35,6 +35,12 @@ import { CommentFormComponent } from './components/comment/comment-form/comment-
 import { ListCommentsComponent } from './components/comment/list-comments/list-comments.component';
 import { ReactionCommentComponent } from './components/component/reaction-button/reaction-comment/reaction-comment.component';
 import { ChangePasswordComponent } from './components/user/change-password/change-password.component';
+import { SusspendCommunityComponent } from './components/community/susspend-community/susspend-community.component';
+import { ListRulesComponent } from './components/community/list-rules/list-rules.component';
+import { CreateRuleComponent } from './components/community/create-rule/create-rule.component';
+import { UpdateRuleComponent } from './components/community/update-rule/update-rule.component';
+import { UpdateCommunityComponent } from './components/community/update-community/update-community.component';
+import { UpdatePostComponent } from './components/post/update-post/update-post.component';
 
 
 @NgModule({
@@ -60,7 +66,13 @@ import { ChangePasswordComponent } from './components/user/change-password/chang
     CommentFormComponent,
     ListCommentsComponent,
     ReactionCommentComponent,
-    ChangePasswordComponent
+    ChangePasswordComponent,
+    SusspendCommunityComponent,
+    ListRulesComponent,
+    CreateRuleComponent,
+    UpdateRuleComponent,
+    UpdateCommunityComponent,
+    UpdatePostComponent
   ],
 
 

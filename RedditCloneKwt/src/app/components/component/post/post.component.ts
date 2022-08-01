@@ -46,6 +46,7 @@ export class PostComponent implements OnInit {
   private getCommunityByName() {
     this.communityService.getCommunityByName(this.post.communityName).subscribe(data => {
       this.communityId = data.id;
+      console.log(data.id);
     });
   }
 

@@ -1,0 +1,37 @@
+<div class="container">
+    <div class="row">
+      <hr />
+      <div class="create-post-container col-md-9">
+        <form class="post-form" [formGroup]="form" (ngSubmit)="editPost()">
+          <div class="form-group">
+            <div class="create-post-heading" style="text-align:center ;">EditPost</div>
+            <hr />
+            <label for="titleInput">Description</label><br>
+            <input type="text" [formControlName]="'text'" class="form-control" style="margin-top: 5px"
+              value="{{post.text}}"><br>
+            <label for="flairInput">Title</label><br>
+            <input type="text" [formControlName]="'postName'" class="form-control" style="margin-top: 5px"
+            value="{{post.postName}}"><br>
+             
+            <div>
+              <label for="pictureInput">Upload picture</label><br>
+              <input class="form-control" type="file" id="selectAvatar" (change)="fileChangeEvent($event)"
+                accept="image/png, image/jpeg" /> <br>
+              <img *ngIf="isImageSaved" class="img" [src]="cardImageBase64" />
+            </div>
+            <label for="flairInput">Choose flair</label><br>
+            <select class="form-control" style="margin-top: 10px" [formControlName]="'flairName'">
+              <option value="" selected disabled>Select</option>
+              <option *ngFor="let flair of flairs">{{flair.name}}</option>
+            </select> <br>
+            <br>
+            <span>
+              <div style="margin-left:15px; margin-top: 5px; text-align: right;" class="float-right">
+                <button (click)="discardPost()" class="btn-secondary btn-sm" style="margin-right: 2px;">Discard</button>
+                <button [disabled]="!form.valid" class="btn-primary btn-sm">Post</button>
+              </div>
+            </span>
+          </div>
+        </form>
+      </div>
+    </div>
