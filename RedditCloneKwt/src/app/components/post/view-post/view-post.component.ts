@@ -86,8 +86,8 @@ export class ViewPostComponent implements OnInit {
   }
 
   deletePost(){
-    this.postService.deletePost(this.postId).subscribe((data) =>{
-      this.router.navigate(['post', this.postId]);
+    this.postService.deletePost(this.activateRoute.snapshot.params.id).subscribe((data) =>{
+      this.router.navigateByUrl('');
     })
   }
 }

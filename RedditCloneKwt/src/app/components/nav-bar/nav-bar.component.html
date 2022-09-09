@@ -15,15 +15,18 @@
         </li>
         <li *ngIf="!isLoggedIn" class="nav-item">
           <a class="nav-link" routerLink="/registration">Sign up</a>
-        </li>
-        <li *ngIf="isLoggedIn" class="nav-item dropdown">
+        </li>   
+        <li *ngIf="isLoggedIn" class="nav-item dropdown"> 
           <a *ngIf="displayName; else templateUserName" class="nav-link dropdown-toggle" href="#"
-            id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">  
+            <img *ngIf="user.avatar" class="img" src="{{avatar}}" height="20px" width="30px" />               
             {{user.displayName}}
           </a>
-          <ng-template #templateUserName >
+          
+          <ng-template #templateUserName >   
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
               aria-expanded="false">
+              <img *ngIf="user.avatar" class="img" src="{{avatar}}" height="20px" width="30px" /> 
               {{username}}
             </a>
           </ng-template>

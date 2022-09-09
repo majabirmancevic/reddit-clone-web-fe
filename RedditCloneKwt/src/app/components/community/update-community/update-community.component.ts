@@ -44,6 +44,7 @@ export class UpdateCommunityComponent implements OnInit {
     this.communityModel.description = this.form.get('description').value;
 
     this.communityService.updateCommunity(this.communityId,this.communityModel).subscribe(data => {
+      console.log(data);
       this.router.navigate(['community', this.communityId]);
     })
   }

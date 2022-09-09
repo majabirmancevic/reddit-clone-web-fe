@@ -11,7 +11,7 @@
       </ul>
     </div><br>
   </div>
-  <div  >
+  <div *ngIf="currentUserId" >
     <button *ngIf="canEdit()" (click)="goToCreateRule()" class="btn-info">Create</button><br> 
   </div>
 </div>

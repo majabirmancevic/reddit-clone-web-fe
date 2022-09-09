@@ -7,14 +7,10 @@
             <hr />
             <input type="text" [formControlName]="'title'" class="form-control" style="margin-top: 5px"
               value="{{communityModel.name}}">
-            <textarea type="text" [formControlName]="'description'" style="width: 100%; margin-top: 5px"
-                value="{{communityModel.description}}"></textarea>
-            <div>
-              <div style="margin-top: 5px" class="float-right">
+            <textarea type="text" [formControlName]="'description'" class="form-control"  style="width: 100%; margin-top: 5px"
+                value="{{communityModel.description}}"></textarea>       
                 <button (click)="discard()" class="btnDiscard">Discard</button>
-                <button type="submit" class="btnCreateCommunity">Create</button>
-              </div>
-            </div>
+                <button type="submit" >Update</button>        
           </div>
         </form>
       </div>

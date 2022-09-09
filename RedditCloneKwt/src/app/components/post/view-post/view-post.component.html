@@ -3,7 +3,7 @@
     <hr />
     <div class="col-md-11">
       <div class="row post">
-        <div class="col-md-1">
+        <div class="col-md-1" *ngIf="currentUserId">
           <app-reaction-button [post]="post"></app-reaction-button>
         </div>
 
@@ -28,8 +28,9 @@
             <span class="postname">{{post.postName}}</span>
             <p class="post-text">{{post.text}}</p>
           </div>
-          <span *ngIf="post.flair" style="background-color: rgb(124, 128, 132); color: rgb(220, 220, 225); border-radius: 5px;  font-style: italic; padding: 5px 10px ;">{{post.flair}}</span><br>
-          <img *ngIf="post.imagePath" class="img" src={{post.imagePath}} height="200px" width="300px" />
+          
+          <img *ngIf="post.imagePath" class="img" src={{post.imagePath}} height="200px" width="300px" /> <br> <br>
+          <span *ngIf="post.flair" style="background-color: rgb(124, 128, 132); color: rgb(220, 220, 225); border-radius: 5px;  font-style: italic; padding: 5px 10px ;">{{post.flair}}</span><br><br> <br>
           <button *ngIf="canEdit()" style="margin: 5px;" (click)="goToEditPost(this.post.id)" class="btn-primary btn-sm">Edit</button>
           <button *ngIf="canDelete()" style="margin: 5px;" (click)="deletePost(this.post.id)" class="btn-primary btn-sm">Delete</button>
         </div>

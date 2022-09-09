@@ -67,7 +67,7 @@ export class PostService {
   }
 
   deletePost(id:number){
-    return this.apiService.delete(`http://localhost:8080/api/posts/${id}`)
+    return this.http.delete(`http://localhost:8080/api/posts/${id}`)
   }
 
 //  updatePost(postPayload: CreatePostPayload, id: number): Observable<any> {

@@ -41,7 +41,7 @@ export class CreateCommunityComponent implements OnInit {
     this.communityModel.description = this.createCommunityForm.get('description')?.value;
 
     this.communityService.createCommunity(this.communityModel).subscribe(data => {
-      this.router.navigateByUrl('/list-communities');
+      this.router.navigateByUrl('');
     })
   }
 }

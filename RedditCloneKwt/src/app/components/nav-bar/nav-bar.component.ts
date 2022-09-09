@@ -12,6 +12,7 @@ export class NavBarComponent implements OnInit {
   username: string;
   displayName : string;
   isLoggedIn : boolean;
+  avatar : string;
 
   constructor(private userService: UserService, private authService: AuthService,  private router: Router) { }
 
@@ -23,7 +24,8 @@ export class NavBarComponent implements OnInit {
     this.username = this.authService.getUserName();
     this.userService.getMyInfo(this.authService.getUserName()).subscribe(data=>{
     this.user = data, 
-    this.displayName = data.displayName});
+    this.displayName = data.displayName
+    this.avatar = data.avatar});
   }
 
 

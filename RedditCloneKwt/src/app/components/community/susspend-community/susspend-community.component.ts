@@ -32,13 +32,13 @@ export class SusspendCommunityComponent implements OnInit {
     this.suspendedReason = this.form.get('reason').value;
     this.communityService.deleteCommunity(this.id, this.suspendedReason).subscribe(data => {
       console.log("Community " + data.id + " " + data.name + " " + data.suspendedReason +  " is suspended!");
-      this.router.navigate(['']);
+      this.router.navigateByUrl('');
     });
   }
 
   discard() {
 
-    this.router.navigate(['']);
+    this.router.navigateByUrl('');
 
   }
 }

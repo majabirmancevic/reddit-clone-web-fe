@@ -5,7 +5,7 @@
       submitLabel="Write"
       (handleSubmit)="addComment({ text: $event, parentId: null })"
     >
-    </app-comment-form>
+    </app-comment-form> <br>
     <div class="comments-container">
       <app-comment
         *ngFor="let rootComment of getRootComments()"

@@ -43,7 +43,7 @@ export class ListRulesComponent implements OnInit {
   }
 
   canEdit(): boolean {
-    if (this.currentUserId === this.moderatorId || this.userType === "ADMIN") {
+    if ( this.currentUserId === this.moderatorId || this.userType === "ADMIN") {
       return true;
     }
     else {
@@ -51,7 +51,7 @@ export class ListRulesComponent implements OnInit {
     }
   }
   canDelete(): boolean {
-    if (this.currentUserId === this.moderatorId || this.userType === "ADMIN") {
+    if ( this.currentUserId === this.moderatorId || this.userType === "ADMIN") {
       return true;
     }
     else {

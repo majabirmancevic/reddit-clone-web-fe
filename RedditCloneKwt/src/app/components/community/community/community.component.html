@@ -1,7 +1,10 @@
 <div class="reddit-body">
   <div class="container">
-    <button *ngIf="canSuspend()" (click)="goToSuspend()" class="btn-danger btn-sm" style="align-items: flex-end; margin-top: 10px; ">Susspend community</button>
-    <button *ngIf="canEdit()" style="margin: 5px;" (click)="goToEditCommunity()" class="btn-primary btn-sm">Edit</button>
+    <div *ngIf="currentUserId"> 
+      <button *ngIf="canSuspend()" (click)="goToSuspend()" class="btn-danger btn-sm" style="align-items: flex-end; margin-top: 10px; ">Susspend community</button>
+      <button *ngIf="canEdit()" style="margin: 5px;" (click)="goToEditCommunity()" class="btn-primary btn-sm">Edit</button>
+    </div>
+    
 
     <div class="row" >    
       <div class="col-md-7" *ngFor="let post of posts">       

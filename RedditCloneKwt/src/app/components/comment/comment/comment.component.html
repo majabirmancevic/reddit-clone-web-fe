@@ -8,26 +8,26 @@
       <div class="comment-author" style="font-weight: bold;"> Posted by {{ comment.userName }}</div>
       <div>{{ comment.timestamp }}</div>
     </div>
-
+    <br>
     <div class="comment-text" *ngIf="!isEditing()">{{ comment.text }}</div>
 
     <app-comment-form *ngIf="isEditing()" submitLabel="Update" [hasCancelButton]="true" [initialText]="comment.text"
       (handleSubmit)="updateComment.emit({ text: $event, commentId: comment.id })"
       (handleCancel)="setActiveComment.emit(null)">
     </app-comment-form>
-
+    <br>
     <div class="comment-actions">
-      <div *ngIf="canReply" class="comment-action"
+      <span *ngIf="canReply" class="comment-action"
         (click)="setActiveComment.emit({id: comment.id,type: activeCommentType.replying})" style="font-style: italic; ">
         Reply
-      </div>
-      <div *ngIf="canEdit" class="comment-action" (click)="setActiveComment.emit({id: comment.id,type: activeCommentType.editing})" style="font-style: italic;">
+      </span>
+      <span *ngIf="canEdit" class="comment-action" (click)="setActiveComment.emit({id: comment.id,type: activeCommentType.editing})" style="font-style: italic;">
         Edit
-      </div>
-      <div *ngIf="canDelete" class="comment-action" (click)="deleteComment.emit(comment.id)"
+      </span>
+      <span *ngIf="canDelete" class="comment-action" (click)="deleteComment.emit(comment.id)"
         style="font-style: italic;">
         Delete
-      </div>
+      </span>
     </div>
 
     <app-comment-form *ngIf="isReplying()" submitLabel="Reply"

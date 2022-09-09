@@ -45,8 +45,8 @@ export class CommunityService {
   }
 
 
-  updateCommunity(id : number, subredditModel: CommunityModel ){
-    return this.apiService.put(`http://localhost:8080/api/community/edit/${id}`,JSON.stringify(subredditModel));
+  updateCommunity(id : number, communityDto: CommunityModel ){
+    return this.apiService.put(`http://localhost:8080/api/community/edit/${id}`,JSON.stringify(communityDto));
   }
 
 //  updateCommunity(subredditModel: CommunityModel, id: number): Observable<any> {
