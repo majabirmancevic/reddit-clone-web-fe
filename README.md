@@ -5,4 +5,4 @@ This application consists of 3 course areas:
 - Server web technologies – Java Spring Boot application (Backend for Reddit Clone) + Elasticsearch is used to search posts and communities; [Reddit - Java app](https://github.com/majabirmancevic/reddit-clone-web-be)
 - Client web technologies – Angular application (Frontend for Reddit Clone);
 - Mobile applications – Android application (Frontend for Reddit Clone).
-[Reddit - Android app](https://github.com/majabirmancevic/reddit-clone-web-fe)
+[Reddit - Android app](https://github.com/majabirmancevic/reddit-clone-mob-fe)
